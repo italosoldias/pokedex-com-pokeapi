@@ -7,6 +7,17 @@ html, body{
 
 }
 
+ul{
+    
+    width: 100px;
+    height: 230px;
+    overflow: hidden;
+    overflow-y: scroll;
+    align-content: center;
+    padding-right: 80px;
+    margin-top: auto;
+    padding-top: 0%;
+}
 .container{
     display: grid ;
     justify-content: center;
@@ -45,13 +56,58 @@ html, body{
 
 
 .vizor{
+    
     background-color: azure;
     margin-left: 10%;
     width: 190px;
-    height: 190px;
+    height: 200px;
     
 }
 
+.containerVisor{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 20px 20px;
+    grid-template-rows: 240px 240px;
+    grid-gap: 0px;
+   
+}
+/* .tipo1{
+    
+    text-align: center;
+    height: 24px;
+    width: 50px;
+    margin-left: 39px;
+    
+    
+   background-color:black; 
+} */
+.tipo1{
+        width: 50px;
+        height: 24px;
+        display: inline-block;
+        background-color: black;
+        font-size: 3vw;
+        text-align: center;
+        
+        
+}
+.tipo2{
+    
+    width: 50px;
+        height: 24px;
+        display: inline-block;
+        background-color: red;
+        font-size: 3vw;
+        text-align: center; 
+}
+.imagens{
+    padding-top: 10px;
+    width:100px;
+    height: 150px;
+    text-align: center;
+}
 .btnEsquerda {
     background-color: black;
     border-radius: 10%;
@@ -66,6 +122,3 @@ body{
     background-color: rgb(12, 12, 150);
 }
 
-ul{
-    margin-left: 50%;
-}
