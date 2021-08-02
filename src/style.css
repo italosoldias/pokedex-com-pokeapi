@@ -36,7 +36,7 @@ ul{
     border-radius:20px;
     width: 225px;
     height:  240px ;
-        font-size: 3vw;
+        
         text-align: center;
         padding: 5vw 0vw 5vw 0vw;
        
@@ -65,44 +65,40 @@ ul{
 }
 
 .containerVisor{
-    display: grid;
+    display: block ;
     justify-content: center;
     align-content: center;
     grid-template-columns: 20px 20px;
-    grid-template-rows: 240px 240px;
-    grid-gap: 0px;
-   
+    grid-template-rows: 150px 150px;
+    grid-gap: 0vw;
+    
+    
 }
-/* .tipo1{
-    
-    text-align: center;
-    height: 24px;
-    width: 50px;
-    margin-left: 39px;
-    
-    
-   background-color:black; 
-} */
+
 .tipo1{
         width: 50px;
-        height: 24px;
-        display: inline-block;
+        height: 20px;
+        display: inline-table;
         background-color: black;
-        font-size: 3vw;
         text-align: center;
-        
+        border-radius: 5px;
+        border:1px solid;
+        text-align: center; 
         
 }
 .tipo2{
     
-    width: 50px;
-        height: 24px;
-        display: inline-block;
+        width: 50px;
+        height: 20px;
+        display: inline-table;
         background-color: red;
-        font-size: 3vw;
+        border-radius: 5px;
+        border:1px solid;
         text-align: center; 
+        
 }
 .imagens{
+    display:unset;
     padding-top: 10px;
     width:100px;
     height: 150px;
@@ -110,13 +106,16 @@ ul{
 }
 .btnEsquerda {
     background-color: black;
+    color: azure;
     border-radius: 10%;
-    margin-left: 100px;
+    width: 59px;
+    margin-left: 50px;
     margin-top: 20px;
 }
 .btnDireta{
     background-color: black;
-    
+    width: 59px;
+    color: azure;
 }
 body{
     background-color: rgb(12, 12, 150);

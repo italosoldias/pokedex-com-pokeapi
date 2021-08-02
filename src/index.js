@@ -32,10 +32,27 @@ function chamandoNomePokemon(  numero ) {
  function proximo(){
   console.log( pok++)
   //console.log(chamandoUrlPokemon(  ).infomacaoPokemon)
-  console.log(pegaTipoPokemon())
-  alteraCor()
+  pegaTipoPokemon()
+  let quantidadeCores = alteraCor().length
+  
+ 
+  console.log("essa é a quantidade de cores" + quantidadeCores)
+  
+  if(quantidadeCores < 2) {
+    document.getElementById("tipo2").style.display = 'none';
+    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0]
+    document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
+    
+     
+  } else 
+  document.getElementById("tipo2").style.display = 'inline-table';
+  document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0]
+  document.querySelector("#tipo2").innerHTML = pegaTipoPokemon()[1]
+  document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
+  document.getElementById("tipo2").style.backgroundColor = alteraCor()[1];
+
   document.getElementById("imagens").src=pegaImagemPokemom()
-  //document.getElementById("tipo1").style.backgroundColor = alteraCor().dragon.cor
+  
     return pok
 };
 
@@ -44,6 +61,24 @@ function anterior(){
   // evemto de click pra voltar o pokemon anteriror com os atributos
   console.log( pok--)
  
+  document.getElementById("imagens").src=pegaImagemPokemom()
+  pegaTipoPokemon()
+  let quantidadeCores = alteraCor().length
+  console.log("essa é a quantidade de cores" + quantidadeCores)
+  
+  if(quantidadeCores < 2) {
+    document.getElementById("tipo2").style.display = 'none';
+    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0]
+    document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
+    
+     
+  } else 
+    document.getElementById("tipo2").style.display = 'inline-table';
+    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0]
+    document.querySelector("#tipo2").innerHTML = pegaTipoPokemon()[1]
+    document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
+    document.getElementById("tipo2").style.backgroundColor = alteraCor()[1];
+
   document.getElementById("imagens").src=pegaImagemPokemom()
   
     return pok
@@ -81,6 +116,7 @@ function pegaImagemPokemom () {
   return imagem
 }
 
+
 function pegaTipoPokemon(){
 
 // funcao para selecionar o tipo do pokemon
@@ -117,71 +153,235 @@ function pegaTipoPokemon(){
 
 function alteraCor (){
   
-  let TiposCores = {
-    fire: { tipo: "fire",
-        cor :"#FF0000"},
-    grass :{ tipo: "grass",
-        cor: "#00FF00"},
-    walter : { tipo: "walter",
-      cor: "#00BFFF"},
-    ice : { tipo: "ice",
-      cor: "#58FAF4"},
-    bug : { tipo: "bug",
-      cor: "#BFFF00"},
-    normal : { tipo: "normal",
-      cor: "#848484"},
-    sheel : { tipo: "sheel",
-      cor: "#6E6E6E"},
-    poison : { tipo: "poison",
-      cor:"#8904B1"},
-    dragon : { tipo: "dragon",
-      cor: "#DF013A"},
-    eletric : { tipo: "eletric",
-      cor: "#FFFF00"},
-    ground : { tipo: "ground",
-      cor: "#FACC2E"},
-    rock : { tipo: "rock",
-      cor: "#61380B"},
-    ghost : { tipo: "ghost",
-      cor: "#380B61"},
-    flying: { tipo: "flying",
-      cor: "#E0F2F7"},
-    fighting : { tipo: "fighting",
-      cor: "#FF4000"},
-    psychic : { tipo: "psychic",
-      cor: "#FE2EF7"},
-    dark : { tipo: "dark",
-      cor: "#000000"},
-    fairy : { tipo: "fairy",
-      cor: "#FA58F4"}
+  let tiposCores = {
+    fire :"#FF0000",
+    grass : "#00FF00",
+    water : "#00BFFF",
+    ice :  "#58FAF4",
+    bug :  "#BFFF00",
+    normal :  "#848484",
+    sheel : "#6E6E6E",
+    poison : "#8904B1",
+    dragon :  "#DF013A",
+    electric : "#FFFF00",
+    ground :  "#FACC2E",
+    rock :  "#61380B",
+    ghost : "#380B61",
+    flying: "#E0F2F7",
+    fighting : "#FF4000",
+    psychic :  "#FE2EF7",
+    dark : "#000000",
+    fairy :  "#FA58F4"
 
   }
 
-  console.log(TiposCores)
-   let arry = [];
+  let corColocar= [];
+
+  //console.log(tiposCores)
+   
   let arryTiposPKSelec = pegaTipoPokemon()
   
+  console.log(arryTiposPKSelec)
   switch (arryTiposPKSelec.length) {
     case 2:
-      for (let index = 0; index < arryTiposPKSelec.length; index++) {
-        const element = arryTiposPKSelec[index];
-        
 
-      }
+    // procurar uma forma melhor de fazer essa validação
+      switch (arryTiposPKSelec[0]) {
+        case "grass":
+            corColocar.push(tiposCores.grass)
+          break;
+        case "fire":
+            corColocar.push(tiposCores.fire)
+          break;
+        case "water":
+            corColocar.push(tiposCores.water)
+          break;
+        case "ice":
+            corColocar.push(tiposCores.ice)
+          break;
+        case "bug":
+            corColocar.push(tiposCores.bug)
+          break;          
+        case "normal":
+            corColocar.push(tiposCores.normal)
+          break;     
+        case "sheel":
+            corColocar.push(tiposCores.sheel)
+          break;
+        case "poison":
+            corColocar.push(tiposCores.poison)
+          break;
+        case "dragon":
+            corColocar.push(tiposCores.dragon)
+          break;
+        case "electric":
+           corColocar.push(tiposCores.electric)
+          break;
+        case "ground":
+           corColocar.push(tiposCores.ground)
+          break;
+        case "rock":
+           corColocar.push(tiposCores.rock)
+          break;  
+        case "ghost":
+           corColocar.push(tiposCores.ghost)
+          break;   
+        case "flying":
+           corColocar.push(tiposCores.flying)
+          break;   
+        case "fighting":
+           corColocar.push(tiposCores.fighting)
+          break;   
+        case "psychic":
+           corColocar.push(tiposCores.psychic)
+          break;   
+        case "dark":
+           corColocar.push(tiposCores.dark)
+          break;   
+        case "fairy":
+           corColocar.push(tiposCores.fairy)
+          break;                                     
+        default: console.log("deu ruim")
+          break;
+      };
       
+      switch (arryTiposPKSelec[1]) {
+        case "grass":
+            corColocar.push(tiposCores.grass)
+          break;
+        case "fire":
+            corColocar.push(tiposCores.fire)
+          break;
+        case "water":
+            corColocar.push(tiposCores.water)
+          break;
+        case "ice":
+            corColocar.push(tiposCores.ice)
+          break;
+        case "bug":
+            corColocar.push(tiposCores.bug)
+          break;          
+        case "normal":
+            corColocar.push(tiposCores.normal)
+          break;     
+        case "sheel":
+            corColocar.push(tiposCores.sheel)
+          break;
+        case "poison":
+            corColocar.push(tiposCores.poison)
+          break;
+        case "dragon":
+            corColocar.push(tiposCores.dragon)
+          break;
+        case "electric":
+           corColocar.push(tiposCores.electric)
+          break;
+        case "electric":
+           corColocar.push(tiposCores.electric)
+          break;
+        case "ground":
+           corColocar.push(tiposCores.ground)
+          break;
+        case "rock":
+           corColocar.push(tiposCores.rock)
+          break;  
+        case "ghost":
+           corColocar.push(tiposCores.ghost)
+          break;   
+        case "flying":
+           corColocar.push(tiposCores.flying)
+          break;   
+        case "fighting":
+           corColocar.push(tiposCores.fighting)
+          break;   
+        case "psychic":
+           corColocar.push(tiposCores.psychic)
+          break;   
+        case "dark":
+           corColocar.push(tiposCores.dark)
+          break;   
+        case "fairy":
+           corColocar.push(tiposCores.fairy)
+          break;                                     
+        default: console.log("deu ruim")
+          break;
+      };
+
       break;
   
-    default: console.log("tem algo errado")
+    default:  switch (arryTiposPKSelec[0]) {
+      case "grass":
+          corColocar.push(tiposCores.grass)
+        break;
+      case "fire":
+          corColocar.push(tiposCores.fire)
+        break;
+      case "water":
+          corColocar.push(tiposCores.water)
+        break;
+      case "ice":
+          corColocar.push(tiposCores.ice)
+        break;
+      case "bug":
+          corColocar.push(tiposCores.bug)
+        break;          
+      case "normal":
+          corColocar.push(tiposCores.normal)
+        break;     
+      case "sheel":
+          corColocar.push(tiposCores.sheel)
+        break;
+      case "poison":
+          corColocar.push(tiposCores.poison)
+        break;
+      case "dragon":
+          corColocar.push(tiposCores.dragon)
+        break;
+      case "electric":
+         corColocar.push(tiposCores.electric)
+        break;
+      case "electric":
+         corColocar.push(tiposCores.electric)
+        break;
+      case "ground":
+         corColocar.push(tiposCores.ground)
+        break;
+      case "rock":
+         corColocar.push(tiposCores.rock)
+        break;  
+      case "ghost":
+         corColocar.push(tiposCores.ghost)
+        break;   
+      case "flying":
+         corColocar.push(tiposCores.flying)
+        break;   
+      case "fighting":
+         corColocar.push(tiposCores.fighting)
+        break;   
+      case "psychic":
+         corColocar.push(tiposCores.psychic)
+        break;   
+      case "dark":
+         corColocar.push(tiposCores.dark)
+        break;   
+      case "fairy":
+         corColocar.push(tiposCores.fairy)
+        break;                                     
+      default: console.log("deu ruim")
+        break;
+    };
+
       break;
   }
-   return TiposCores
+  console.log(corColocar)
+  return corColocar
 
   // criar um switch para mandar a informação da cor para o botão
 }
 
 
-pegaImagemPokemom()
-pegaTipoPokemon()
+//pegaImagemPokemom()
+//pegaTipoPokemon()
 
 
 
