@@ -32,19 +32,20 @@ ul{
 
 
 .externa1{
-    background-color: rgba(214, 32, 32, 0.691);
-    border-radius:20px;
+    background-color: #B22222;
+    border-radius:20px 0px 0px 20px;
+    
     width: 225px;
-    height:  240px ;
+    height:  249px ;
         
         text-align: center;
         padding: 5vw 0vw 5vw 0vw;
        
 }
 .externa2{
-    background-color: rgba(214, 32, 32, 0.691);
+    background-color: #B22222;
     width: 225px;
-    height:  240px ;
+    height:  249px ;
    
     
     
@@ -57,10 +58,10 @@ ul{
 
 .vizor{
     
-    background-color: azure;
+    background-color: #DCDCDC;
     margin-left: 10%;
     width: 190px;
-    height: 200px;
+    height: 220px;
     
 }
 
@@ -76,7 +77,7 @@ ul{
 }
 
 .tipo1{
-        width: 50px;
+        width: 69px;
         height: 20px;
         display: inline-table;
         background-color: black;
@@ -88,7 +89,7 @@ ul{
 }
 .tipo2{
     
-        width: 50px;
+        width: 69px;
         height: 20px;
         display: inline-table;
         background-color: red;
@@ -98,14 +99,14 @@ ul{
         
 }
 .imagens{
-    display:unset;
+    
     padding-top: 10px;
     width:100px;
     height: 150px;
     text-align: center;
 }
 .btnEsquerda {
-    background-color: black;
+    background-color: #1C1C1C;
     color: azure;
     border-radius: 10%;
     width: 59px;
@@ -113,8 +114,13 @@ ul{
     margin-top: 20px;
 }
 .btnDireta{
-    background-color: black;
+    background-color: #1C1C1C;
     width: 59px;
+    color: azure;
+}
+
+.nomePK{
+    background-color: black;
     color: azure;
 }
 body{

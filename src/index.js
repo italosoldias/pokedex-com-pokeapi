@@ -5,11 +5,13 @@ function fazGet (url){
     return request.responseText
 };
 var pok = -1;
+var nomeTipoCaiaalta = pegaTipoPokemon()
+
 
 function chamandoNomePokemon(  numero ) {
   //primeira requisicao para selecionar o pokemon
 
-  let data = fazGet("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150")
+  let data = fazGet("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151")
   let pokemon = JSON.parse(data)
        
   let numeroPokemon = numero
@@ -17,12 +19,13 @@ function chamandoNomePokemon(  numero ) {
   let pokemonsArry = pokemon.results
   
   let nomePokemons = pokemonsArry[numeroPokemon].name
-  
+   
   let urlPokemon = pokemonsArry[numeroPokemon].url
   
   return obj = {
     urlPokemon,
-    numeroPokemon
+    numeroPokemon,
+    nomePokemons
   }
  
 };
@@ -32,26 +35,32 @@ function chamandoNomePokemon(  numero ) {
  function proximo(){
   console.log( pok++)
   //console.log(chamandoUrlPokemon(  ).infomacaoPokemon)
+  
+  
   pegaTipoPokemon()
-  let quantidadeCores = alteraCor().length
+  let quantidadeTipos = alteraCor().length
+  let nomePKCaixaBaixa = chamandoNomePokemon(pok).nomePokemons
+  let nomePKCaixaAlta = nomePKCaixaBaixa.toUpperCase();
   
- 
-  console.log("essa é a quantidade de cores" + quantidadeCores)
   
-  if(quantidadeCores < 2) {
-    document.getElementById("tipo2").style.display = 'none';
-    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0]
+  if(quantidadeTipos == 2) {
+    // foi alterada a validacao onde antes era verificado se o tamanho do arry era menor que 2 essa validacao 
+    document.getElementById("tipo1").style.display = 'inline-table';
+    document.getElementById("tipo2").style.display = 'inline-table';
+    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0];
+    document.querySelector("#tipo2").innerHTML = pegaTipoPokemon()[1];
     document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
-    
+    document.getElementById("tipo2").style.backgroundColor = alteraCor()[1];
+    document.querySelector("#nomePK").innerHTML = nomePKCaixaAlta;
      
-  } else 
-  document.getElementById("tipo2").style.display = 'inline-table';
-  document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0]
-  document.querySelector("#tipo2").innerHTML = pegaTipoPokemon()[1]
-  document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
-  document.getElementById("tipo2").style.backgroundColor = alteraCor()[1];
-
-  document.getElementById("imagens").src=pegaImagemPokemom()
+  } else {
+    document.getElementById("tipo1").style.display = 'inline-table';
+    document.getElementById("tipo2").style.display = 'none';
+    document.querySelector("#nomePK").innerHTML = nomePKCaixaAlta;
+    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0];
+    document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
+  };
+    document.getElementById("imagens").src=pegaImagemPokemom()
   
     return pok
 };
@@ -59,25 +68,32 @@ function chamandoNomePokemon(  numero ) {
 
 function anterior(){
   // evemto de click pra voltar o pokemon anteriror com os atributos
-  console.log( pok--)
+   pok--
  
   document.getElementById("imagens").src=pegaImagemPokemom()
   pegaTipoPokemon()
-  let quantidadeCores = alteraCor().length
-  console.log("essa é a quantidade de cores" + quantidadeCores)
+  let quantidadeTipos = alteraCor().length
+  let nomePKCaixaBaixa = chamandoNomePokemon(pok).nomePokemons
+  let nomePKCaixaAlta = nomePKCaixaBaixa.toUpperCase();
   
-  if(quantidadeCores < 2) {
-    document.getElementById("tipo2").style.display = 'none';
-    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0]
-    document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
-    
-     
-  } else 
+
+  if(quantidadeTipos == 2) {
+    document.getElementById("tipo1").style.display = 'inline-table';
     document.getElementById("tipo2").style.display = 'inline-table';
-    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0]
-    document.querySelector("#tipo2").innerHTML = pegaTipoPokemon()[1]
+    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0];
+    document.querySelector("#tipo2").innerHTML = pegaTipoPokemon()[1];
     document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
     document.getElementById("tipo2").style.backgroundColor = alteraCor()[1];
+    document.querySelector("#nomePK").innerHTML = nomePKCaixaAlta;
+    
+     
+  } else {
+    document.getElementById("tipo1").style.display = 'inline-table';
+    document.getElementById("tipo2").style.display = 'none';
+    document.querySelector("#nomePK").innerHTML = nomePKCaixaAlta;
+    document.querySelector("#tipo1").innerHTML = pegaTipoPokemon()[0];
+    document.getElementById("tipo1").style.backgroundColor = alteraCor()[0];
+  };
 
   document.getElementById("imagens").src=pegaImagemPokemom()
   
@@ -132,15 +148,16 @@ function pegaTipoPokemon(){
     case  2 :
       for (let index = 0; index < tipos.length; index++) {
         const element = tipos[index];
-        const elementos = element.type["name"];
+        const elementos = element.type["name"].toUpperCase();
        // console.log(elementos);
+        
         arryTipos.push(elementos);
         
         
       } 
       break;
   
-    default : arryTipos.push(tipos["0"].type["name"])
+    default : arryTipos.push(tipos["0"].type["name"].toUpperCase())
 
       break;
   }
@@ -181,64 +198,64 @@ function alteraCor (){
    
   let arryTiposPKSelec = pegaTipoPokemon()
   
-  console.log(arryTiposPKSelec)
+  
   switch (arryTiposPKSelec.length) {
     case 2:
 
     // procurar uma forma melhor de fazer essa validação
       switch (arryTiposPKSelec[0]) {
-        case "grass":
+        case "GRASS":
             corColocar.push(tiposCores.grass)
           break;
-        case "fire":
+        case "FIRE":
             corColocar.push(tiposCores.fire)
           break;
-        case "water":
+        case "WATER":
             corColocar.push(tiposCores.water)
           break;
-        case "ice":
+        case "ICE":
             corColocar.push(tiposCores.ice)
           break;
-        case "bug":
+        case "BUG":
             corColocar.push(tiposCores.bug)
           break;          
-        case "normal":
+        case "NORMAL":
             corColocar.push(tiposCores.normal)
           break;     
-        case "sheel":
+        case "SHEEL":
             corColocar.push(tiposCores.sheel)
           break;
-        case "poison":
+        case "POISON":
             corColocar.push(tiposCores.poison)
           break;
-        case "dragon":
+        case "DRAGON":
             corColocar.push(tiposCores.dragon)
           break;
-        case "electric":
+        case "ELECTRIC":
            corColocar.push(tiposCores.electric)
           break;
-        case "ground":
+        case "GROUND":
            corColocar.push(tiposCores.ground)
           break;
-        case "rock":
+        case "ROCK":
            corColocar.push(tiposCores.rock)
           break;  
-        case "ghost":
+        case "GHOST":
            corColocar.push(tiposCores.ghost)
           break;   
-        case "flying":
+        case "FLYING":
            corColocar.push(tiposCores.flying)
           break;   
-        case "fighting":
+        case "FIGHTING":
            corColocar.push(tiposCores.fighting)
           break;   
-        case "psychic":
+        case "PSYCHIC":
            corColocar.push(tiposCores.psychic)
           break;   
-        case "dark":
+        case "DARK":
            corColocar.push(tiposCores.dark)
           break;   
-        case "fairy":
+        case "FAIRY":
            corColocar.push(tiposCores.fairy)
           break;                                     
         default: console.log("deu ruim")
@@ -246,61 +263,58 @@ function alteraCor (){
       };
       
       switch (arryTiposPKSelec[1]) {
-        case "grass":
+        case "GRASS":
             corColocar.push(tiposCores.grass)
           break;
-        case "fire":
+        case "FIRE":
             corColocar.push(tiposCores.fire)
           break;
-        case "water":
+        case "WATER":
             corColocar.push(tiposCores.water)
           break;
-        case "ice":
+        case "ICE":
             corColocar.push(tiposCores.ice)
           break;
-        case "bug":
+        case "BUG":
             corColocar.push(tiposCores.bug)
           break;          
-        case "normal":
+        case "NORMAL":
             corColocar.push(tiposCores.normal)
           break;     
-        case "sheel":
+        case "SHEEL":
             corColocar.push(tiposCores.sheel)
           break;
-        case "poison":
+        case "POISON":
             corColocar.push(tiposCores.poison)
           break;
-        case "dragon":
+        case "DRAGON":
             corColocar.push(tiposCores.dragon)
           break;
-        case "electric":
+        case "ELECTRIC":
            corColocar.push(tiposCores.electric)
           break;
-        case "electric":
-           corColocar.push(tiposCores.electric)
-          break;
-        case "ground":
+        case "GROUND":
            corColocar.push(tiposCores.ground)
           break;
-        case "rock":
+        case "ROCK":
            corColocar.push(tiposCores.rock)
           break;  
-        case "ghost":
+        case "GHOST":
            corColocar.push(tiposCores.ghost)
           break;   
-        case "flying":
+        case "FLYING":
            corColocar.push(tiposCores.flying)
           break;   
-        case "fighting":
+        case "FIGHTING":
            corColocar.push(tiposCores.fighting)
           break;   
-        case "psychic":
+        case "PSYCHIC":
            corColocar.push(tiposCores.psychic)
           break;   
-        case "dark":
+        case "DARK":
            corColocar.push(tiposCores.dark)
           break;   
-        case "fairy":
+        case "FAIRY":
            corColocar.push(tiposCores.fairy)
           break;                                     
         default: console.log("deu ruim")
@@ -310,70 +324,67 @@ function alteraCor (){
       break;
   
     default:  switch (arryTiposPKSelec[0]) {
-      case "grass":
-          corColocar.push(tiposCores.grass)
-        break;
-      case "fire":
-          corColocar.push(tiposCores.fire)
-        break;
-      case "water":
-          corColocar.push(tiposCores.water)
-        break;
-      case "ice":
-          corColocar.push(tiposCores.ice)
-        break;
-      case "bug":
-          corColocar.push(tiposCores.bug)
-        break;          
-      case "normal":
-          corColocar.push(tiposCores.normal)
-        break;     
-      case "sheel":
-          corColocar.push(tiposCores.sheel)
-        break;
-      case "poison":
-          corColocar.push(tiposCores.poison)
-        break;
-      case "dragon":
-          corColocar.push(tiposCores.dragon)
-        break;
-      case "electric":
-         corColocar.push(tiposCores.electric)
-        break;
-      case "electric":
-         corColocar.push(tiposCores.electric)
-        break;
-      case "ground":
-         corColocar.push(tiposCores.ground)
-        break;
-      case "rock":
-         corColocar.push(tiposCores.rock)
-        break;  
-      case "ghost":
-         corColocar.push(tiposCores.ghost)
-        break;   
-      case "flying":
-         corColocar.push(tiposCores.flying)
-        break;   
-      case "fighting":
-         corColocar.push(tiposCores.fighting)
-        break;   
-      case "psychic":
-         corColocar.push(tiposCores.psychic)
-        break;   
-      case "dark":
-         corColocar.push(tiposCores.dark)
-        break;   
-      case "fairy":
-         corColocar.push(tiposCores.fairy)
-        break;                                     
+      case "GRASS":
+            corColocar.push(tiposCores.grass)
+          break;
+        case "FIRE":
+            corColocar.push(tiposCores.fire)
+          break;
+        case "WATER":
+            corColocar.push(tiposCores.water)
+          break;
+        case "ICE":
+            corColocar.push(tiposCores.ice)
+          break;
+        case "BUG":
+            corColocar.push(tiposCores.bug)
+          break;          
+        case "NORMAL":
+            corColocar.push(tiposCores.normal)
+          break;     
+        case "SHEEL":
+            corColocar.push(tiposCores.sheel)
+          break;
+        case "POISON":
+            corColocar.push(tiposCores.poison)
+          break;
+        case "DRAGON":
+            corColocar.push(tiposCores.dragon)
+          break;
+        case "ELECTRIC":
+           corColocar.push(tiposCores.electric)
+          break;
+        case "GROUND":
+           corColocar.push(tiposCores.ground)
+          break;
+        case "ROCK":
+           corColocar.push(tiposCores.rock)
+          break;  
+        case "GHOST":
+           corColocar.push(tiposCores.ghost)
+          break;   
+        case "FLYING":
+           corColocar.push(tiposCores.flying)
+          break;   
+        case "FIGHTING":
+           corColocar.push(tiposCores.fighting)
+          break;   
+        case "PSYCHIC":
+           corColocar.push(tiposCores.psychic)
+          break;   
+        case "DARK":
+           corColocar.push(tiposCores.dark)
+          break;   
+        case "FAIRY":
+           corColocar.push(tiposCores.fairy)
+          break;                                     
       default: console.log("deu ruim")
         break;
     };
 
       break;
   }
-  console.log(corColocar)
+  
   return corColocar
 
   // criar um switch para mandar a informação da cor para o botão
@@ -392,5 +403,5 @@ function alteraCor (){
 
  
 
-chamandoNomePokemon()
+
 
