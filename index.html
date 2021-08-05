@@ -10,11 +10,18 @@
     <title>Document</title>
 </head>
     <body>  
-        <div class="container">
+        <div class="boasVindas" id="boasVindas" >
+            <button class="iniciar" id="iniciar" onclick="iniciar()"> Clique aqui para iniciar!</button>
+            <img src="src\Pokédex_logo.png" alt="">
+            
+
+        </div>
+
+        <div class="container" id="container" style="display: none;">
         <div class="externa1">
             <div class="vizor">
                 <div id="nomePK" class="nomePK"></div>
-                <img src="./src/pokeapi_256.png" id = "imagens" class="imagens">
+                <img src="src\Pokédex_logo.png" id = "imagens" class="imagens">
                 
                 <div id= "containerVisor">
                     <div id="tipo1" class="tipo1" style="display: none;"> </div>
@@ -30,20 +37,10 @@
             <button class="btnDireta" id ="btnDireta" onclick="proximo()" > proximo</button>
         </div>
         <div class="externa2" >
-            <ul>
-                <li>a</li>
-                <li>a</li>
-                <li>a</li>
-                <li>a</li>
-                <li>a</li>
-                <li>a</li>
-
-                <li>a</li>
-                <li>a</li>
-                <li>a</li>
-                <li>a</li>
-                
-            </ul>
+            <nav>
+                <ul id="listaPK" class="listaPK">              
+                </ul>
+            </nav>
         </div>
     </div>
     </body>
